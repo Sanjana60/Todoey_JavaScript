@@ -61,6 +61,7 @@
 
 
         <button type="submit" id="add" class="btn btn-primary">Add to list.</button>
+        <button id="clear" class="btn btn-primary" onclick="clearsto()">Clear list.</button>
      
 
       <div id="items" class="my-4">
@@ -156,6 +157,14 @@
         localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray));
         update();
       };
+
+      function clearsto(){
+        if(confirm("Do you really want to clear?")){
+        localStorage.clear();
+        console.log('Clearing the Storage');
+        update();
+        }
+      }
     </script>
   </body>
 </html>
