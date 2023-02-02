@@ -46,7 +46,7 @@
 
     <div class="container">
       <h2 class="text-center my-4">TODOs List</h2>
-      <form>
+      
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input type="email" class="form-control" id="title" aria-describedby="emailHelp">
@@ -60,8 +60,8 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary">Add to list.</button>
-      </form>
+        <button type="submit" id="add" class="btn btn-primary">Add to list.</button>
+     
 
       <div id="items" class="my-4">
         <h2>Your Items</h2>
@@ -74,7 +74,7 @@
               <th scope="col">Action to be Performed</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id = "tableBody">
             <tr>
               <th scope="row">1</th>
               <td>Get some chocolate.</td>
@@ -92,5 +92,43 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script>
+      function update(){
+        console.log('update');
+        tit = document.getElementById('title').value;
+        desc = document.getElementById('description').value;
+        if(localStorage.getItem('itemsJson')==null){
+          itemJsonArray = [];
+          itemJsonArray.push([tit, desc]);
+          localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
+        }
+        else{
+
+          itemJsonArraystr = localStorage.getItem('itemsJson')
+          itemJsonArray = JSON.parse(itemJsonArraystr);
+          itemJsonArray.push([tit, desc]);
+          localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray))
+
+        }
+ 
+        let tableBody = document.getElementById("tableBody");
+        let str = "";
+        itemJsonArray.forEach((element, index) =>{
+
+          str+=`<tr>
+            <th scope="row">${index+1}</th>
+            <td>${element[0]}</td>
+            <td>${element[1]}</td>
+            <td><button class="btn btn-sm btn-primary">Delete</button></td>
+          </tr>`;
+
+        });
+
+        tableBody.innerHTML = str;
+      };
+      add = document.getElementById('add');
+      add.addEventListener('click', update);
+    </script>
   </body>
 </html>
