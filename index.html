@@ -48,14 +48,18 @@
       <h2 class="text-center my-4">TODOs List</h2>
       <form>
         <div class="mb-3">
-          <label for="title" class="form-label">Tasks</label>
+          <label for="title" class="form-label">Title</label>
           <input type="email" class="form-control" id="title" aria-describedby="emailHelp">
           <div id="emailHelp" class="form-text">Write a tasks to add in the todo list.</div>
         </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <input type="text-area" class="form-control" id="description">
+
+
+        <div class="form-group mb-3">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
         </div>
+
+
         <button type="submit" class="btn btn-primary">Add to list.</button>
       </form>
     </div>
